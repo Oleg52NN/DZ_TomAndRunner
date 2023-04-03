@@ -4,6 +4,7 @@ import dz.servlets.exception.NotFoundException;
 import dz.servlets.model.Post;
 import dz.servlets.repository.PostRepository;
 
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class PostService {
@@ -13,8 +14,8 @@ public class PostService {
         this.repository = repository;
     }
 
-    public ConcurrentHashMap all() {
-        return (ConcurrentHashMap) repository.all();
+    public List all() {
+        return repository.all();
     }
 
     public Post getById(long id) {
