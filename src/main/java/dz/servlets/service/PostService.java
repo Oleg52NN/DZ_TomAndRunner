@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-@Service
+
 public class PostService {
     private final PostRepository repository;
 
