@@ -2,21 +2,24 @@ package dz.servlets.repository;
 
 import dz.servlets.model.Post;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class PostRepository {
-    AtomicLong idCounter;
-    ConcurrentHashMap<Long, String> postMap;
+    private final AtomicLong idCounter;
+    private final ConcurrentHashMap<Long, String> postMap;
 
     public PostRepository() {
         idCounter = new AtomicLong(1);
         postMap = new ConcurrentHashMap<Long, String>();
     }
 
-    public ConcurrentHashMap all() {
-        return postMap;
+    public List all() {
+        List<String> list = new ArrayList<>(postMap.values());
+        return list;
     }
 
     public Optional<Post> getById(long id) {
