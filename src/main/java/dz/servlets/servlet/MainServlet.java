@@ -3,12 +3,15 @@ package dz.servlets.servlet;
 import dz.servlets.controller.PostController;
 import dz.servlets.repository.PostRepository;
 import dz.servlets.service.PostService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 public class MainServlet extends HttpServlet {
+
     private PostController controller;
     private static final String GET = "GET";
     private static final String POST = "POST";
@@ -19,9 +22,10 @@ public class MainServlet extends HttpServlet {
 
     @Override
     public void init() {
-        final var repository = new PostRepository();
-        final var service = new PostService(repository);
-        controller = new PostController(service);
+        final var context = new AnnotationConfigApplicationContext("dz.servlets");
+        //final var repository = new PostRepository();
+        //final var service = new PostService(repository);
+        controller = context.getBean(PostController.class);
     }
 
     @Override
