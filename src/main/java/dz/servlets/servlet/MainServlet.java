@@ -1,8 +1,7 @@
 package dz.servlets.servlet;
 
+import dz.servlets.JavaConfig;
 import dz.servlets.controller.PostController;
-import dz.servlets.repository.PostRepository;
-import dz.servlets.service.PostService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.http.HttpServlet;
@@ -22,10 +21,11 @@ public class MainServlet extends HttpServlet {
 
     @Override
     public void init() {
-        final var context = new AnnotationConfigApplicationContext("dz.servlets");
-        //final var repository = new PostRepository();
-        //final var service = new PostService(repository);
+        final var context = new AnnotationConfigApplicationContext(JavaConfig.class);
         controller = context.getBean(PostController.class);
+        final var service = context.getBean("postService");
+        final var repository = context.getBean("postRepository");
+
     }
 
     @Override
